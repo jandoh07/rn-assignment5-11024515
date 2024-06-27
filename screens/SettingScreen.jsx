@@ -1,12 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { FlatList, StyleSheet, Switch, Text, View } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useTheme } from "../theme/ThemeContext";
 
 const SettingScreen = () => {
   const [toggle, setToggle] = useState(false);
+  const { toggleTheme } = useTheme();
 
-  const toggleSwitch = () => setToggle((previousState) => !previousState);
+  const toggleSwitch = () => {
+    setToggle((previousState) => !previousState);
+    toggleTheme();
+  };
   return (
     <SafeAreaView style={styles.container}>
       <View style={{ marginBottom: 80 }}>
